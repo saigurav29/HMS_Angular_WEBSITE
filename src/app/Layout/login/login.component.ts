@@ -14,6 +14,6 @@ export class LoginComponent implements OnInit {
   }
 
   loginme(){
-this.route.navigateByUrl("dashboard")
+this.route.navigateByUrl("app/dashboard")
   }
 }
