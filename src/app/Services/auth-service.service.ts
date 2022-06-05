@@ -15,7 +15,7 @@ export class AuthServiceService {
 }
 getUserInfo(){
   if(sessionStorage.getItem("userInfo")){
-      this.userInfo= JSON.parse(sessionStorage.getItem("userInfo"));
+     // this.userInfo= JSON.parse(sessionStorage.getItem("userInfo"));
       this.IslogedIn = true;
       return this.userInfo;
   }
@@ -26,9 +26,9 @@ getUserInfo(){
 
 
 
-startAuthentication(): Promise<void> {
-  return  //this.manager.signinRedirect();
-}
+// startAuthentication(): Promise<void> {
+//   return null; //this.manager.signinRedirect();
+// }
 
 
 
@@ -41,13 +41,13 @@ startAuthentication(): Promise<void> {
 //       }
 //   }
 // }
-clearSessionStorage() {
-  for (var i = 0; i < sessionStorage.length; i++) {
-      if (sessionStorage.key(i).includes("userInfo")) {
-          const idTokenLocal = sessionStorage.key(i);
-          sessionStorage.removeItem(idTokenLocal);
-          break;
-      }
-  }
-}
+// clearSessionStorage() {
+//   for (var i = 0; i < sessionStorage.length; i++) {
+//       if (sessionStorage.key(i).includes("userInfo")) {
+//           const idTokenLocal = sessionStorage.key(i);
+//           sessionStorage.removeItem(idTokenLocal);
+//           break;
+//       }
+//   }
+// }
 }
