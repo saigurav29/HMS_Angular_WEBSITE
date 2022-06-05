@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { navMenuService } from 'src/app/Services/navMenu.service';
 
 @Component({
   selector: 'app-navmenu',
@@ -7,8 +8,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./navmenu.component.css']
 })
 export class NavmenuComponent implements OnInit {
-
-  constructor(public route:Router) { }
+menuList:any;
+  constructor(public route:Router,private navservice:navMenuService) {
+    this.menuList= this.navservice.sidemenuLIst(1);
+   }
 
   ngOnInit(): void {
   }
@@ -16,5 +19,5 @@ export class NavmenuComponent implements OnInit {
 
   routeme(url:any){
     this.route.navigateByUrl(url);
-      }
+    }
 }
