@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  webapibaseurl:"http://saramahesh-001-site1.htempurl.com/api/",
+  apicalltimeout: 300000,
 };
 
 /*
