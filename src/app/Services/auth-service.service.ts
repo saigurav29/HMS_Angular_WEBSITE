@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthServiceService {
 
   constructor() { }
-  public userInfo: any ={};
+  public userInfo: any={} ;
   public IslogedIn:boolean=false; 
 
   setUserInfo(token:any){
@@ -15,7 +15,8 @@ export class AuthServiceService {
 }
 getUserInfo(){
   if(sessionStorage.getItem("userInfo")){
-     // this.userInfo= JSON.parse(sessionStorage.getItem("userInfo"));
+    let sess:any = sessionStorage.getItem("userInfo");
+      this.userInfo= JSON.parse(sess);
       this.IslogedIn = true;
       return this.userInfo;
   }

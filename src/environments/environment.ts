@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  webapibaseurl:"https://localhost:44390/api/",
+  webapibaseurl:"http://saramahesh-001-site1.htempurl.com/api/",
   apicalltimeout: 300000,
 };
 

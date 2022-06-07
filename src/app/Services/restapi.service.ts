@@ -16,12 +16,9 @@ export class RestApiService {
         private getHttpHeaderWithAuthorization() {
           //"Access-Control-Allow-Origin":"*",   
           this.authorizationHeader = new HttpHeaders({
-              'Accept': 'text/plain',
-              'Access-Control-Allow-Origin':'*',
-              'Content-Type': 'application/json',
-              'Authorization': '',
-               "Access-Control-Request-Method": "GET,POST",
-              "Access-Control-Request-Headers": "X-Custom-Header"
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': ''
           });
       }
         handleError(error: HttpErrorResponse) {
