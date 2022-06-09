@@ -1,41 +1,96 @@
-<div class="row">
-    <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-blue order-card">
-            <div class="card-block">
-                <h6 class="m-b-20">Current Month Sales</h6>
-                <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>486</span></h2>
-                <p class="m-b-0">June Sale Total Margin</p>
-            </div>
-        </div>
-    </div>
     
-    <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-green order-card">
-            <div class="card-block">
-                <h6 class="m-b-20">Total Employees</h6>
-                <h2 class="text-right"><i class="fa fa-rocket f-left"></i><span>10</span></h2>
-                <p class="m-b-0">Today Login employees <span class="f-right">&nbsp;5</span></p>
-            </div>
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between stretch">
+        <div class="mb10 mat-typography" fxFlex="24" fxFlex.lt-lg="49">
+          <app-stat [bgClass]="'danger'" [icon]="'bookmarks'" [count]="currenMonthSales" [label]="'June Sale Total Margin!'" [detaillable]="'Current Month Sales'"></app-stat>
         </div>
-    </div>
-    <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-pink order-card">
-            <div class="card-block">
-                <h6 class="m-b-20">Today's Orders</h6>
-                <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>15</span></h2>
-                <p class="m-b-0">Completed Orders Today</p>
-            </div>
+        <div class="mb10 mat-typography" fxFlex="24" fxFlex.lt-lg="49">
+          <app-stat [bgClass]="'warn'" [icon]="'view_list'" [count]="loginEmp" [label]="'Loged In Employeess'" [detaillable]="'Total Employees!' + totalEmp"></app-stat>
         </div>
-    </div>
-    <div class="col-md-4 col-xl-3">
-        <div class="card bg-c-yellow order-card">
-            <div class="card-block">
-                <h6 class="m-b-20">Onging Orders</h6>
-                <h2 class="text-right"><i class="fa fa-refresh f-left"></i><span>3</span></h2>
-                <p class="m-b-0">Tables running<span class="f-right"></span></p>
-            </div>
+        <div class="mb10 mat-typography" fxFlex="24" fxFlex.lt-lg="49">
+          <app-stat [bgClass]="'success'" [icon]="'shopping_cart'" [count]="todaysOrder" [label]="'Orders Completed'" [detaillable]="'Today Total Orders Completed'"></app-stat>
         </div>
-    </div>
-    
-   
-</div>
+        <div class="mb10 mat-typography" fxFlex="24" fxFlex.lt-lg="49">
+          <app-stat [bgClass]="'info'" [icon]="'contact_support'" [count]="todaysongoingOrder" [label]="'Tables are running..'" [detaillable]="'Onging Orders!'"></app-stat>
+        </div>
+      </div>
+<br>
+      <div class="mt20" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayout.lt-md="column" fxLayoutGap="20px">
+        <mat-card fxFlex >
+          <mat-card-header style="justify-content: center">
+            <mat-card-title>
+              <h3 class="m-0 "><b>Employee List</b></h3>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <table class="table table-hover">
+              <thead class="text-bold">
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Mobile</th>
+                  <th>Email</th>
+                  <th>Is Loged-In</th>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let emp of emplist">
+                      <td>{{emp.id}}</td>
+                      <td>{{emp.name}}</td>
+                      <td>{{emp.mobile}}</td>
+                      <td>{{emp.emailId}}</td>
+                      <td>
+                        <mat-chip-list>
+                          <mat-chip class="success" *ngIf="emp.isactive" selected>Available</mat-chip>
+                          <mat-chip class="warn"  *ngIf="!emp.isactive" selected>Away</mat-chip>
+                        </mat-chip-list>
+                      </td>
+                  </tr>
+              </tbody>
+          </table> 
+          </mat-card-content>
+        </mat-card>
+        <mat-card fxFlex >
+          <mat-card-header style="justify-content: center">
+            <mat-card-title>
+              <h3 class="m-0"><b>Onging Orders List</b></h3>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <table class="table table-hover">
+              <thead class="text-bold">
+                  <th>Order ID</th>
+                  <th>Table Number</th>
+                  <!-- <th>Employe ID</th> -->
+                  <th>Order Time</th>
+                  <th>Item Name</th>
+                  <th>Order Status</th>
+                  <th>Item Status</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let ord of ongoingOrders">
+                  <td>{{ord.orderID}}</td>
+                  <td>T{{ord.tableID}}</td>
+                  <!-- <td>{{ord.employeeID}}</td> -->
+                  <td>{{ord.orderTime | date:'short' }}</td>
+                  <td>{{ord.itemName}}</td>
+                  <td>
+                    <mat-chip-list>
+                      <mat-chip class="warn" *ngIf="ord.orderstatus=='P'" selected title="Pending">Pending</mat-chip>
+                      <mat-chip class="success"  *ngIf="ord.orderstatus=='C'" selected title="Completed">Completed</mat-chip>
+                    </mat-chip-list>
+                  </td>
+                  <td>
+                    <mat-chip-list>
+                      <mat-chip class="warn" *ngIf="ord.itemStatus=='C'" selected title="Cancled">Cancled</mat-chip>
+                      <mat-chip class="success"  *ngIf="ord.itemStatus=='D'" selected title="Delivered">Delivered</mat-chip>
+                      <mat-chip class="info"  *ngIf="ord.itemStatus=='P'" selected title="Preparing">Preparing</mat-chip>
+                    </mat-chip-list>
+                  </td>
+                  </tr>
+              </tbody>
+          </table> 
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+  
+
+

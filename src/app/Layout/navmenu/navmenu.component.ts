@@ -13,7 +13,7 @@ menuList:any;
 userinfo:any;
   constructor(public route:Router,private navservice:navMenuService,private authserv:AuthServiceService) {
     this.userinfo= this.authserv.getUserInfo();
-    if(this.userinfo==null){
+    if(!this.userinfo){
       this.route.navigateByUrl("/");
     }
     
@@ -26,5 +26,11 @@ userinfo:any;
 
   routeme(url:any){
     this.route.navigateByUrl(url);
+    }
+    logout(){
+       this.authserv.clearSessionStorage();
+       setTimeout(() => {
+         this.route.navigateByUrl("/");
+       }, 1000);
     }
 }
