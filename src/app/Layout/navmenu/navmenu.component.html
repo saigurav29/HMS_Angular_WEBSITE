@@ -1,50 +1,43 @@
-<!-- <div class="toolbar" role="banner">
-    
-    <span>HMS</span>
-    <nav class="navbar navbar-dark bg-primary">
-      </nav>
-      <div class="spacer"></div>
-        <img
-      width="40"
-      alt="HMS"
-      src="../assets/Images/logout.png"
-    />
-  </div> -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" ><img
-        width="40"
-        alt="HMS"
-        src="../assets/Images/hms.jpg"
-      /></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+
+  <div style="height: 80vh;">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span (click)="routeme('app/dashboard')" > <img width="40" alt="HMS" src="../assets/Images/hms.png" /> HMS</span>
+        <span class="menu-spacer"></span>
+        <div fxShow="true" fxHide.lt-md>
+          <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+          <a  *ngFor="let menu of menuList" mat-button  (click)="routeme(menu.route)">{{menu.displayName}}</a>
+          <a mat-button>&nbsp;&nbsp;&nbsp;</a>
+          <a  mat-button><mat-icon>account_circle</mat-icon> {{userinfo?.name}} </a>
+         
+          <button mat-icon-button (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
   
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active" *ngFor="let menu of menuList">
-          <a class="nav-link"  (click)="routeme(menu.route)">{{menu.displayName}}<span class="sr-only">(current)</span></a>
-        </li>
-        <!-- <li class="nav-item active">
-            <a class="nav-link"  (click)="routeme('app/orderlist')">Orders List<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link"  (click)="routeme('app/tablebooking')">Tables<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link"  (click)="routeme('app/employee')">Employees<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link"  (click)="routeme('app/fooditem')">Food Items<span class="sr-only">(current)</span></a>
-          </li> -->
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <a class="loginuser" >Mahesh  </a>&nbsp;
-        <img
-        width="40"
-        alt="HMS"
-        src="../assets/Images/logout.png"
-      />   
-    </form>
-    </div>
-  </nav>
+    <mat-sidenav-container fxFlexFill>
+      <mat-sidenav #sidenav>
+        <mat-nav-list>
+          <a (click)="sidenav.toggle()" mat-list-item>Close</a>
+          <a  *ngFor="let menu of menuList"  mat-list-item  (click)="routeme(menu.route)">{{menu.displayName}} </a>
+          <a  mat-list-item>&nbsp;&nbsp;&nbsp;</a>
+          <a  mat-button>{{userinfo?.name}}</a>
+          <a><img
+            width="40"
+            alt="Logout" style="cursor: pointer;"
+            src="../assets/Images/logout.png"  (click)="logout()"
+          /> </a>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content fxFlexFill>
+        <div class="container topPadding">
+              <router-outlet></router-outlet>
+      </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>

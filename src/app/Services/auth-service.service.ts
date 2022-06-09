@@ -42,13 +42,14 @@ getUserInfo(){
 //       }
 //   }
 // }
-// clearSessionStorage() {
-//   for (var i = 0; i < sessionStorage.length; i++) {
-//       if (sessionStorage.key(i).includes("userInfo")) {
-//           const idTokenLocal = sessionStorage.key(i);
-//           sessionStorage.removeItem(idTokenLocal);
-//           break;
-//       }
-//   }
-// }
+clearSessionStorage() {
+  for (var i = 0; i < sessionStorage.length; i++) {
+    var sessdtd:any = sessionStorage.key(i);
+      if (sessdtd.includes("userInfo")) {
+          const idTokenLocal:any = sessionStorage.key(i);
+          sessionStorage.removeItem(idTokenLocal);
+          break;
+      }
+  }
+}
 }
