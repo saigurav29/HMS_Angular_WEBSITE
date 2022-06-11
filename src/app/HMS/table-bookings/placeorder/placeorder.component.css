@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+  }
+  .warn {
+    background: linear-gradient(60deg, #ffa726, #fb8c00);
+  }
+  .success {
+    background: linear-gradient(60deg, #66bb6a, #43a047);
+  }
+  .info {
+    background: linear-gradient(60deg, #26c6da, #00acc1);
+  }
+  .btnalign{
+    float: right;
+    margin-top: -50px;
+    right: 100px;
+}
+.btnalign1{
+  float: right;
+  margin-top: -50px;
+  right: 0px;
+}
+.btnalign2{
+  float: right;
+  margin-top: -50px;
+  right: 255px;
+}
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}

@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StatComponent } from './HMS/dashboard/stat/stat.component';
+import { StepperComponent } from './HMS/table-bookings/stepper/stepper.component';
 @NgModule({
   declarations: [
     AppComponent

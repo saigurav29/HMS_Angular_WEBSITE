@@ -1,0 +1,125 @@
+<div class="mt20" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayout.lt-md="column" fxLayoutGap="20px">
+<mat-card fxFlex >
+    <mat-card-header style="justify-content: center">
+      <mat-card-title>
+        <h3 class="m-0 "><b>Select items and place order</b></h3>
+        
+      </mat-card-title>
+
+    </mat-card-header>
+    <mat-card-content>
+
+<mat-form-field appearance="standard" style="width: 50%;">
+    <mat-label>Search Item</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+</mat-form-field>
+<div>
+  <button mat-raised-button color="primary" [disabled]="tablestatus!='F'"  class="btnalign2" 
+  (click)="Reservetable()">
+   <mat-icon>event_seat</mat-icon> &nbsp; Reserve
+ </button>
+  <button mat-raised-button color="primary"  class="btnalign" (click)="placeorders()">
+    <mat-icon>add_shopping_cart</mat-icon> &nbsp; Place Order
+  </button>
+  <button mat-raised-button color="primary" [disabled]="orderdata.length<=0"  class="btnalign1" 
+   (click)="finalize()">
+    <mat-icon>receipt</mat-icon> &nbsp; Bill
+  </button>
+</div>
+<ng-container>
+<table mat-table [dataSource]="dataFoodItemSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef  style="width: 150px;"> Item Type </th>
+    <td mat-cell *matCellDef="let element"> 
+      <mat-chip-list>
+        <mat-chip class="success" *ngIf="element.itemType=='Veg'" selected>{{element.itemType}}</mat-chip>
+        <mat-chip class="warn"  *ngIf="element.itemType=='Non-Veg'" selected>{{element.itemType}}</mat-chip>
+      </mat-chip-list>
+     </td>
+  </ng-container>
+    <ng-container matColumnDef="itemname">
+      <th mat-header-cell *matHeaderCellDef > item Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.itemName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Category </th>
+      <td mat-cell *matCellDef="let element"> {{element.categoryName}} </td>
+    </ng-container>
+    <!-- <ng-container matColumnDef="itemdesc">
+      <th mat-header-cell *matHeaderCellDef> Item Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.itemDec}} </td>
+    </ng-container>  -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef  style="width: 140px;"> Price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price  | currency:'INR':'symbol'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef style="width: 140px;"> Order </th>
+      <td mat-cell *matCellDef="let element">
+        <app-stepper [data]="element" (onchange)="selectedQuantity($event)"></app-stepper>
+      </td>
+    </ng-container> 
+    <tr mat-header-row *matHeaderRowDef="displayFoodItemHeader"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayFoodItemHeader;"></tr>
+  </table>
+</ng-container>
+</mat-card-content>
+</mat-card>
+</div>
+<div class="mt20" *ngIf="orderdata.length>0" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayout.lt-md="column" fxLayoutGap="20px">
+  <mat-card fxFlex >
+<mat-card-header style="justify-content: center">
+    <mat-card-title>
+      <h3 class="m-0 "><b>Items Ordered</b></h3>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Position Column -->
+  <ng-container matColumnDef="itemName">
+    <th mat-header-cell *matHeaderCellDef>Item Name</th>
+    <td mat-cell *matCellDef="let element"> {{element.itemName}} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+    <td mat-cell *matCellDef="let element"> 1 </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+
+  </ng-container>
+
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef> Price </th>
+    <td mat-cell *matCellDef="let element">{{element.price  | currency:'INR':'symbol'}} </td>
+    <td mat-footer-cell *matFooterCellDef>{{ sum("price") | currency:'INR':'symbol' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="itemStatus">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let element"> 
+      <mat-chip-list>
+        <mat-chip class="success" *ngIf="element.itemStatus=='D'" selected>
+          <mat-icon >alarm_on</mat-icon> &nbsp;Deliverd
+        </mat-chip>
+        <mat-chip class="warn"  *ngIf="element.itemStatus=='P'" selected>
+          <mat-icon >alarm</mat-icon> &nbsp;Preparing
+        </mat-chip>
+        <mat-chip class="info"  *ngIf="element.itemStatus=='C'" selected>      
+          <mat-icon >alarm_off</mat-icon> &nbsp;Cancled
+        </mat-chip>
+      </mat-chip-list>
+    </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-footer-row *matFooterRowDef="displayedColumns;"></tr>
+</table>
+</mat-card-content>
+</mat-card>
+</div>

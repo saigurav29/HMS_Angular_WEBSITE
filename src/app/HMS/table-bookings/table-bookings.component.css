@@ -5,4 +5,12 @@
 	
 }
 
-  
+.mat-fab {
+    width: 150px !important;
+    height: 150px !important;
+    left: 40px !important;
+    margin-top:20px;
+}
+.tablename{
+    font-size: 26px;
+}

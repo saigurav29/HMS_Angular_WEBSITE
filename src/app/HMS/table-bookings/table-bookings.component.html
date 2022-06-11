@@ -1,18 +1,40 @@
 <div class="container">
     <div class="row">
 	
-		<div class="col-md-3">
-            <label class="btn btn-primary">
+		<div class="col-md-3" *ngFor="let tab of tablesdata">
+			<button mat-fab color="accent" *ngIf="tab.tableStatus=='B'" (click)="openDialog(tab)">
+				<span class="tablename">{{tab.tableName}}</span>
+				<br>
+			<span>Running Table</span><br>
+			<mat-icon>add_shopping_cart</mat-icon>
+			</button>
+			<button mat-fab color="primary" *ngIf="tab.tableStatus=='F'"  (click)="openDialog(tab)">
+				<span class="tablename">{{tab.tableName}}</span>
+				<br>
+			<span>Click To Book</span><br>
+			<mat-icon>touch_app</mat-icon>
+			</button>
+			<button mat-fab color="warn" *ngIf="tab.tableStatus=='R'"  (click)="openDialog(tab)">
+				<span class="tablename">{{tab.tableName}}</span>
+				<br>
+			<span>Reserved</span><br>
+			<mat-icon>event_seat</mat-icon>
+			</button>
+
+            <!-- <label class="btn btn-primary">
                 <img src="../../../assets/Images/T1.png" alt="..." class="img-thumbnail img-check">
                 <input type="checkbox" checked="true" name="chk1" id="item4" value="val1" class="hidden" autocomplete="off">
-            </label></div>
-		<div class="col-md-3"><label class="btn "><img src="../../../assets/Images/T2.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk2" id="item4" value="val2" class="hidden" autocomplete="off"></label></div>
-		<div class="col-md-3"><label class="btn "><img src="../../../assets/Images/T3.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk3" id="item4" value="val3" class="hidden" autocomplete="off"></label></div>
+            </label> -->
+		</div>
+		<!-- <div class="col-md-3">
+			<button mat-fab color="primary">Primary</button>
+		</div> -->
+		<!-- <div class="col-md-3"><label class="btn "><img src="../../../assets/Images/T3.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk3" id="item4" value="val3" class="hidden" autocomplete="off"></label></div>
 		<div class="col-md-3"><label class="btn "><img src="../../../assets/Images/T4.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk4" id="item4" value="val4" class="hidden" autocomplete="off"></label></div>
 		<div class="col-md-3"><label class="btn "><img src="../../../assets/Images/T5.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk4" id="item4" value="val4" class="hidden" autocomplete="off"></label></div>
 		<div class="col-md-3"><label class="btn "><img src="../../../assets/Images/T6.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk4" id="item4" value="val4" class="hidden" autocomplete="off"></label></div>
 		<div class="col-md-3"><label class="btn "><img src="../../../assets/Images/T7.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk4" id="item4" value="val4" class="hidden" autocomplete="off"></label></div>
-		<div class="col-md-3"><label class="btn "><img src="../../../assets/Images/T8.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk4" id="item4" value="val4" class="hidden" autocomplete="off"></label></div>
+		<div class="col-md-3"><label class="btn "><img src="../../../assets/Images/T8.png" alt="..." class="img-thumbnail img-check"><input type="checkbox" name="chk4" id="item4" value="val4" class="hidden" autocomplete="off"></label></div> -->
 
 	</div>
     </div>

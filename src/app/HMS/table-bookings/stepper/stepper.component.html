@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center center">
+    <button mat-mini-fab color="accent" (click)="toggleLess()" [disabled]="value - step < min">
+        <mat-icon>remove</mat-icon>
+      </button>
+        <input matInput  class="inptwidth"  readonly value="{{value}}">
+    <button mat-mini-fab color="accent" (click)="toggleMore()" [disabled]="value + step > max"> 
+        <mat-icon>add</mat-icon>
+      </button>
+  </div>
