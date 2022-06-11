@@ -34,7 +34,7 @@ export class navMenuService {
                 },
                 {
                   displayName: 'Cheaf Monitor',
-                  route: 'app/fooditem',
+                  route: 'app/cheafmaster',
                 }
               ];
               break;
@@ -43,6 +43,10 @@ export class navMenuService {
                 {
                   displayName: 'Table Booking',
                   route: 'app/tablebooking'
+                },
+                {
+                  displayName: 'Cheaf Monitor',
+                  route: 'app/cheafmaster',
                 }
               ];
               break;
@@ -50,7 +54,7 @@ export class navMenuService {
             NavItem = [
                 {
                     displayName: 'Cheaf Monitor',
-                    route: 'app/fooditem',
+                    route: 'app/cheafmaster',
                   }
               ];
               break; 

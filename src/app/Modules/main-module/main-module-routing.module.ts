@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CheafmonitorComponent } from 'src/app/HMS/cheafmonitor/cheafmonitor.component';
 import { DashboardComponent } from 'src/app/HMS/dashboard/dashboard.component';
 import { EmployeeComponent } from 'src/app/HMS/employee/employee.component';
 import { FoodItemsComponent } from 'src/app/HMS/food-items/food-items.component';
@@ -14,7 +15,9 @@ children:[
   {path:"tablebooking",component:TableBookingsComponent},
   {path:"employee",component:EmployeeComponent},
   {path:"orderlist",component:OrdesListComponent},
-  {path:"fooditem",component:FoodItemsComponent}
+  {path:"fooditem",component:FoodItemsComponent},
+  {path:"cheafmaster",component:CheafmonitorComponent}
+
 ]
 },
 ];

@@ -15,7 +15,8 @@ export class TableService{
 private placeorderurl:any="";
 private finalizeorderurl:any="";
 private reservtableurl:any="";
-
+private getcheafOrdersURL:any="";
+private updateorderStatus:any="";
     constructor(private  restAPI:RestApiService,private http:HttpClient) { 
         this.tabledata = environment.webapibaseurl + "Orders/getTableData";
         this.tablebookingdetails=environment.webapibaseurl+ "Orders/getBookingTableorderDetails";
@@ -23,6 +24,10 @@ private reservtableurl:any="";
         this.placeorderurl = environment.webapibaseurl+"Orders/placeOrderforTable";
         this.finalizeorderurl = environment.webapibaseurl+"Orders/fishorder";
         this.reservtableurl = environment.webapibaseurl+"Orders/Reservetable";
+        this.getcheafOrdersURL = environment.webapibaseurl+"FoodItems/GetCheaforders";
+        this.updateorderStatus = environment.webapibaseurl+"FoodItems/updateItemStatus";
+
+        
 
 
   }
@@ -43,5 +48,11 @@ private reservtableurl:any="";
    }
    Reservetable(reservtabl:any):Observable<any>{  
     return this.http.post<any>(this.reservtableurl,reservtabl);
+   }
+   getcheafordersItems():Observable<any>{  
+    return this.http.get<any>(this.getcheafOrdersURL);
+   }
+   updatecheaforderstatus(orderiteminfo:any):Observable<any>{  
+    return this.http.post<any>(this.updateorderStatus,orderiteminfo);
    }
 }
