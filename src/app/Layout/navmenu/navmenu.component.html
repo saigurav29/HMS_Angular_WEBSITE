@@ -5,12 +5,12 @@
         <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
           <mat-icon>menu</mat-icon>
         </button>
-        <span (click)="routeme('app/dashboard')" > <img width="40" alt="HMS" src="../assets/Images/hms.png" /> HMS</span>
+        <span (click)="headericonroute()" > <img width="40" alt="HMS" src="../assets/Images/hms.png" /> HMS</span>
         <span class="menu-spacer"></span>
         <div fxShow="true" fxHide.lt-md>
           <!-- The following menu items will be hidden on both SM and XS screen sizes -->
           <a  *ngFor="let menu of menuList" mat-button  (click)="routeme(menu.route)">{{menu.displayName}}</a>
-          <a mat-button>&nbsp;&nbsp;&nbsp;</a>
+          &nbsp;&nbsp;&nbsp;
           <a  mat-button><mat-icon>account_circle</mat-icon> {{userinfo?.name}} </a>
          
           <button mat-icon-button (click)="logout()">
@@ -27,11 +27,9 @@
           <a  *ngFor="let menu of menuList"  mat-list-item  (click)="routeme(menu.route)">{{menu.displayName}} </a>
           <a  mat-list-item>&nbsp;&nbsp;&nbsp;</a>
           <a  mat-button>{{userinfo?.name}}</a>
-          <a><img
-            width="40"
-            alt="Logout" style="cursor: pointer;"
-            src="../assets/Images/logout.png"  (click)="logout()"
-          /> </a>
+          <button mat-icon-button (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+          </button>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content fxFlexFill>

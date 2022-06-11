@@ -27,6 +27,17 @@ userinfo:any;
   routeme(url:any){
     this.route.navigateByUrl(url);
     }
+    headericonroute(){
+      if(this.userinfo.role==1){
+        this.route.navigateByUrl("app/dashboard");
+      }else if(this.userinfo.role==2){
+        this.route.navigateByUrl("app/tablebooking");
+
+      }else if(this.userinfo.role==3){
+        this.route.navigateByUrl("app/cheafmaster");
+        
+      }
+    }
     logout(){
        this.authserv.clearSessionStorage();
        setTimeout(() => {

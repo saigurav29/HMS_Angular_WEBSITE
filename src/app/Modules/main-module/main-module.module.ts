@@ -47,6 +47,9 @@ import { MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { StatComponent } from 'src/app/HMS/dashboard/stat/stat.component';
 import { DataService } from 'src/app/Services/data.service';
+import { PlaceorderComponent } from 'src/app/HMS/table-bookings/placeorder/placeorder.component';
+import { StepperComponent } from 'src/app/HMS/table-bookings/stepper/stepper.component';
+import { CheafmonitorComponent } from 'src/app/HMS/cheafmonitor/cheafmonitor.component';
 const materialModules = [
   CdkTreeModule,
 //Mat Form Controls
@@ -104,7 +107,10 @@ MatListModule,
     EmployeeComponent,
     TableBookingsComponent,
     OrdesListComponent,
-    FoodItemsComponent],
+    FoodItemsComponent,
+    StepperComponent,
+    CheafmonitorComponent,
+    PlaceorderComponent],
   imports: [
     CommonModule,
     ...materialModules,

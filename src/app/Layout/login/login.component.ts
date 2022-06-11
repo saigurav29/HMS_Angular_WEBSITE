@@ -31,7 +31,15 @@ export class LoginComponent implements OnInit {
     this.loginservice.loginuser(loginreq).subscribe((retn:any)=>{
       if(retn !=null){
         this.authserv.setUserInfo(retn[0]);
-        this.route.navigateByUrl("app/dashboard");
+        if(retn[0].role==1){
+          this.route.navigateByUrl("app/dashboard");
+        }else if(retn[0].role==2){
+          this.route.navigateByUrl("app/tablebooking");
+
+        }else if(retn[0].role==3){
+          this.route.navigateByUrl("app/cheafmaster");
+          
+        }
         console.log(this.authserv.getUserInfo());
       }else{
         this.loginValid=false;
