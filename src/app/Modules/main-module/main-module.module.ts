@@ -50,6 +50,10 @@ import { DataService } from 'src/app/Services/data.service';
 import { PlaceorderComponent } from 'src/app/HMS/table-bookings/placeorder/placeorder.component';
 import { StepperComponent } from 'src/app/HMS/table-bookings/stepper/stepper.component';
 import { CheafmonitorComponent } from 'src/app/HMS/cheafmonitor/cheafmonitor.component';
+import { BillprintComponent } from 'src/app/HMS/table-bookings/billprint/billprint.component';
+import { AddEditEmployeeComponent } from 'src/app/HMS/employee/add-edit-employee/add-edit-employee.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AlertMessageComponent } from 'src/app/HMS/alert-message/alert-message.component';
 const materialModules = [
   CdkTreeModule,
 //Mat Form Controls
@@ -110,15 +114,19 @@ MatListModule,
     FoodItemsComponent,
     StepperComponent,
     CheafmonitorComponent,
-    PlaceorderComponent],
+    PlaceorderComponent,
+    AddEditEmployeeComponent,
+    AlertMessageComponent,
+    BillprintComponent,],
   imports: [
     CommonModule,
     ...materialModules,
     MainModuleRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-  exports:[...materialModules],
+  exports:[...materialModules,AlertMessageComponent],
   providers: [DataService]
 })
 export class MainModuleModule { }

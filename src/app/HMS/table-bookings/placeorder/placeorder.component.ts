@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {MatTableDataSource} from '@angular/material/table';
 import { AuthServiceService } from 'src/app/Services/auth-service.service';
 import { TableService } from 'src/app/Services/ClientService/Table.service';
+import { BillprintComponent } from '../billprint/billprint.component';
 
 
 @Component({
@@ -18,7 +19,7 @@ tableid:any;
 empinfo:any;
 tablestatus:any;
   constructor(private tabserv:TableService, private auth:AuthServiceService,
-    public dialogRef: MatDialogRef<PlaceorderComponent>,
+    public dialogRef: MatDialogRef<PlaceorderComponent>,public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.empinfo = this.auth.getUserInfo();
       console.log(data);
@@ -79,13 +80,13 @@ fooditemDataTemp:any;
       this.dialogRef.close();
     });
   }
-  finalize(){
-    var orinfo:any ={orderId:this.orderID}
-    this.tabserv.filnalizeOrder(orinfo).subscribe((res:any)=>{
-      console.log(res);
-      this.dialogRef.close();
-    });
-  }
+  // finalize(){
+  //   var orinfo:any ={orderId:this.orderID}
+  //   this.tabserv.filnalizeOrder(orinfo).subscribe((res:any)=>{
+  //     console.log(res);
+  //     this.dialogRef.close();
+  //   });
+  // }
   Reservetable(){
     var tablresv:any ={       tableID:this.tableid    }
     this.tabserv.Reservetable(tablresv).subscribe((res:any)=>{
@@ -96,5 +97,17 @@ fooditemDataTemp:any;
   selectedQuantity(data:any){
     var getdata = this.fooditemDataTemp.findIndex((x:any)=>x.itemId==data.itemId);
     this.fooditemDataTemp[getdata].counter=data.counter;
+  }
+
+  finalize(){
+    const dialogRef = this.dialog.open(BillprintComponent, {
+      width: '40%',
+      height:'600px',
+      data: {orderId:this.orderID},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    this.dialogRef.close();
+    });
   }
 }
