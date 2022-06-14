@@ -4,28 +4,54 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { DataService, UserData } from 'src/app/Services/data.service';
+import { loginService } from 'src/app/Services/ClientService/login.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddEditEmployeeComponent } from './add-edit-employee/add-edit-employee.component';
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-  displayedColumns = ['select', 'id', 'name', 'progress', 'color','action'];
-  dataSource: any | MatTableDataSource<UserData>;
-  selection: any| SelectionModel<UserData>;
+  displayedColumns = [ 'id', 'name', 'mobile', 'username','emailid','role','action'];
+  dataSource: any | MatTableDataSource<any>;
+  selection: any| SelectionModel<any>;
 
   @ViewChild(MatPaginator, { static: true }) paginator:any| MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: any | MatSort;
-  constructor(private readonly dataService: DataService) { }
+  constructor(public dialog: MatDialog,private empservice:loginService) { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.dataService.create100Users());
-    this.selection = new SelectionModel<UserData>(true, []);
+    // this.dataSource = new MatTableDataSource(this.dataService.create100Users());
+    // this.selection = new SelectionModel<UserData>(true, []);
+    this.getemployelist();
   }
 
+
+  getemployelist(){
+    this.empservice.getemployelist().subscribe((rsp:any)=>{
+      this.dataSource = new MatTableDataSource(rsp);
+      this.selection = new SelectionModel<any>(true, []);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    })
+  }
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
+  }
+
+  openDialog(tb:any,type:any): void {
+    const dialogRef = this.dialog.open(AddEditEmployeeComponent, {
+      width: '50%',
+      height:'600px',disableClose: true,
+      data: {data:tb,actiontype:type}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.getemployelist();
+    });
   }
 
   applyFilter(filterValue: any) {

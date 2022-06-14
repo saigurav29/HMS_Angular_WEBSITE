@@ -17,6 +17,7 @@ private finalizeorderurl:any="";
 private reservtableurl:any="";
 private getcheafOrdersURL:any="";
 private updateorderStatus:any="";
+private GetOrdersByIDURL:any="";
     constructor(private  restAPI:RestApiService,private http:HttpClient) { 
         this.tabledata = environment.webapibaseurl + "Orders/getTableData";
         this.tablebookingdetails=environment.webapibaseurl+ "Orders/getBookingTableorderDetails";
@@ -26,6 +27,7 @@ private updateorderStatus:any="";
         this.reservtableurl = environment.webapibaseurl+"Orders/Reservetable";
         this.getcheafOrdersURL = environment.webapibaseurl+"FoodItems/GetCheaforders";
         this.updateorderStatus = environment.webapibaseurl+"FoodItems/updateItemStatus";
+        this.GetOrdersByIDURL = environment.webapibaseurl+"Orders/GetpendingOrdersByID";
 
         
 
@@ -54,5 +56,8 @@ private updateorderStatus:any="";
    }
    updatecheaforderstatus(orderiteminfo:any):Observable<any>{  
     return this.http.post<any>(this.updateorderStatus,orderiteminfo);
+   }
+   GetOrdersByID(orderinfo:any):Observable<any>{  
+    return this.http.post<any>(this.GetOrdersByIDURL,orderinfo);
    }
 }

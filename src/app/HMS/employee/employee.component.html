@@ -1,21 +1,21 @@
 
 <div>
   <span>
-      <h3>Employee List</h3>
+      <h3><b>Employee List</b></h3>
   </span>
  
 </div>
 <section id="sample-table" class="mat-elevation-z8 bg-white">
-  <mat-form-field class="leftmar">
+  <mat-form-field class="leftmar" style="width: 50%;">
     <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
   </mat-form-field>
   <div>
-    <button mat-raised-button color="primary"  class="btnalign">
+    <button mat-raised-button color="primary"  class="btnalign" (click)="openDialog({},'Add')">
       Add Employee
     </button>
   </div>
   <table mat-table [dataSource]="dataSource" matSort class="w-100">
-    <ng-container matColumnDef="select">
+    <!-- <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
         </mat-checkbox>
@@ -24,15 +24,10 @@
         <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
         </mat-checkbox>
       </td>
-    </ng-container>
+    </ng-container> -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
       <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="progress">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-      <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
     </ng-container>
 
     <ng-container matColumnDef="name">
@@ -40,25 +35,44 @@
       <td mat-cell *matCellDef="let row"> {{row.name}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="color">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Color </th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td>
+    <ng-container matColumnDef="mobile">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </th>
+      <td mat-cell *matCellDef="let row"> {{row.mobile}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Username </th>
+      <td mat-cell *matCellDef="let row"> {{row.username}} </td>
+      <!-- <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td> -->
+    </ng-container>
+    <ng-container matColumnDef="emailid">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+      <td mat-cell *matCellDef="let row"> {{row.emailId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+      <td mat-cell *matCellDef="let row" >
+        <span *ngIf="row.role == 1">Manager</span>
+        <span *ngIf="row.role == 2">Captain</span> 
+        <span *ngIf="row.role == 3">Cheaf</span> 
+        </td>
     </ng-container>
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef >Action</th>
       <td  mat-cell *matCellDef="let row">
-        <button mat-mini-fab color="primary"  >
+        <button mat-mini-fab color="primary" (click)="openDialog(row,'Edit')" >
           <mat-icon>edit</mat-icon>
         </button>
        &nbsp; 
-       <button mat-mini-fab color="warn" >
+       <!-- <button mat-mini-fab color="warn" >
           <mat-icon>delete</mat-icon>
-        </button>
+        </button> -->
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+    <!-- (click)="selection.toggle(row)" -->
   </table>
 
   <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

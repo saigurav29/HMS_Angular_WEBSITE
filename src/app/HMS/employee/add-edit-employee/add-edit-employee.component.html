@@ -1,0 +1,129 @@
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around stretch">
+    <mat-card fxFlex.gt-xs="100" class="mb15">
+      <mat-card-header>
+        <mat-card-title>{{empheader == 'Edit'?'Edit':'Add'}} Employee</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="">
+    <div>
+      <form [formGroup]="empform" (change)="formChanged()" id="seletedprint">
+        <mat-grid-list cols="2" [cols]="breakpoint" rowHeight="85px" >
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field>
+                <input matInput placeholder="Employee Name" id="employname"  formControlName="employname" required>
+                <mat-error *ngIf="empform.controls.employname.hasError('required')">
+                  Please enter Employee name
+                </mat-error>
+                <mat-error *ngIf="empform.controls.employname.hasError('pattern')">
+                  Please enter valid Employee name
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Username" id="username"  formControlName="username" required>
+                <mat-error *ngIf="empform.controls.username.hasError('required')">
+                  Please enter Username
+                </mat-error>
+                <mat-error *ngIf="empform.controls.username.hasError('pattern')">
+                  Please enter valid Username
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+
+          <!-- <mat-grid-tile>
+            <div class="text-inside">
+              <mat-radio-group class="gender" formControlName="gender" id="gender">
+                <div style="color:grey;">Gender</div>
+                <mat-radio-button id="rbdmale" color="primary" style="padding:4px 4px 0px 0px;" value="M">Male</mat-radio-button>
+                <mat-radio-button id="rbdfemale" color="primary" style="padding:4px 0px 0px 24px;" value="F">Female</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </mat-grid-tile> -->
+<!-- 
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker1" placeholder="Date of Joining" id="dob" formControlName="dob" required>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <mat-error *ngIf="empform.controls.dob.hasError('required')">
+                    Please select valid date
+                  </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile> -->
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email address" id="email" formControlName="email" required>
+                <mat-error *ngIf="empform.controls.email.hasError('required')">
+                  Please enter email id
+                </mat-error>
+                <mat-error *ngIf="empform.controls.email.hasError('email')||empform.controls.email.hasError('pattern')">
+                  Please enter valid email id
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+        
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field>
+                <input matInput placeholder="Password" id="password" type="password" formControlName="password" required>
+                <mat-error *ngIf="empform.controls.password.hasError('required')">
+                  Please enter Password
+                </mat-error>
+                <mat-error *ngIf="empform.controls.password.hasError('pattern')">
+                  Please enter valid Password
+                </mat-error>
+              </mat-form-field>
+             
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Mobile" id="mobile" formControlName="mobile" required>
+                <mat-error *ngIf="empform.controls.mobile.hasError('required')">
+                  Please enter Mobile
+                </mat-error>
+                <mat-error *ngIf="empform.controls.mobile.hasError('pattern')">
+                    Please enter valid Mobile
+                  </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="text-inside">
+          <mat-form-field appearance="fill">
+            <mat-label>Select Role</mat-label>
+            <mat-select disableRipple name="role" formControlName="role" id="role"
+              required (selectionChange)="changerole($event)" > 
+              <mat-option *ngFor="let role of rolemaster" [value]="role.id" >{{role.text}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+            </div>
+          </mat-grid-tile>
+
+         
+          
+        </mat-grid-list>
+  
+        <div class="btn-sec" align="center">
+          <button mat-raised-button type="button" color="primary" 
+          class="Update-btn" (click)="saveemployee()" [disabled]="empform.invalid"  >Save</button> &nbsp;&nbsp;
+          <button mat-raised-button type="button" class="Discard-btn" (click)="closedailog()">Close</button>
+        </div>
+      </form>
+    </div>
+  <div align="center" *ngIf="exception">
+      <span style="color: red;">Something went wrong, Please try again!</span>
+  </div>
+
+  </mat-card-content>
+  </mat-card>
+  </div>

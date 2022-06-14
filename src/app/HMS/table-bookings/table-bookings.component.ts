@@ -54,5 +54,6 @@ this.tableserv.getTabledata().subscribe((rsp:any)=>{
       console.log(this.tablesdata);
     })
   }
+ 
 }
 
