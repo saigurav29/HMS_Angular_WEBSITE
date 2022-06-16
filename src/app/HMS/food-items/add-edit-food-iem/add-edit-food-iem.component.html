@@ -1,0 +1,89 @@
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around stretch">
+    <mat-card fxFlex.gt-xs="100" class="mb15">
+      <mat-card-header>
+        <mat-card-title>{{empheader == 'Edit'?'Edit':'Add'}} Food Item</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="">
+    <div>
+      <form [formGroup]="foodform" (change)="formChanged()" id="seletedprint">
+        <mat-grid-list cols="2" [cols]="breakpoint" rowHeight="85px" >
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field>
+                <input matInput placeholder="Food Item Name" id="foodname"  formControlName="foodname" required>
+                <mat-error *ngIf="foodform.controls.foodname.hasError('required')">
+                  Please enter Food item name
+                </mat-error>
+                <mat-error *ngIf="foodform.controls.foodname.hasError('pattern')">
+                  Please enter valid Food item name
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Item Description" id="itemdesc"  formControlName="itemdesc" required>
+                <mat-error *ngIf="foodform.controls.itemdesc.hasError('required')">
+                  Please enter Item Description
+                </mat-error>
+                <mat-error *ngIf="foodform.controls.itemdesc.hasError('pattern')">
+                  Please enter valid Item Description
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <div class="text-inside">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Price" id="price" type="number" formControlName="price" required>
+                <mat-error *ngIf="foodform.controls.price.hasError('required')">
+                  Please enter Price
+                </mat-error>
+                <mat-error *ngIf="foodform.controls.price.hasError('pattern')">
+                    Please enter valid Price
+                  </mat-error>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="text-inside">
+          <mat-form-field appearance="fill">
+            <mat-label>Select Category</mat-label>
+            <mat-select disableRipple name="category" formControlName="category" id="category"
+              required  > 
+              <mat-option *ngFor="let cat of category" [value]="cat.id" >{{cat.text}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+            </div>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <div class="text-inside">
+          <mat-form-field appearance="fill">
+            <mat-label>Select Item Type</mat-label>
+            <mat-select disableRipple name="itemtype" formControlName="itemtype" id="itemtype"
+              required  > 
+              <mat-option *ngFor="let itm of itemtype" [value]="itm.text" >{{itm.text}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+            </div>
+          </mat-grid-tile>
+          
+        </mat-grid-list>
+  
+        <div class="btn-sec" align="center">
+          <button mat-raised-button type="button" color="primary" 
+          class="Update-btn" (click)="savefoodItem()" [disabled]="foodform.invalid"  >Save</button> &nbsp;&nbsp;
+          <button mat-raised-button type="button" class="Discard-btn" (click)="closedailog()">Close</button>
+        </div>
+      </form>
+    </div>
+  <div align="center" *ngIf="exception">
+      <span style="color: red;">Something went wrong, Please try again!</span>
+  </div>
+
+  </mat-card-content>
+  </mat-card>
+  </div>

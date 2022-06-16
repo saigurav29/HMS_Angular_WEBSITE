@@ -1,7 +1,9 @@
 <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="space-around stretch">
     <mat-card fxFlex.gt-xs="100" class="mb15">
       <mat-card-header>
-        <mat-card-title>{{empheader == 'Edit'?'Edit':'Add'}} Employee</mat-card-title>
+        <mat-card-title *ngIf="empheader !='View'">{{empheader == 'Edit'?'Edit':'Add'}} Employee</mat-card-title>
+        <mat-card-title *ngIf="empheader =='View'">View Employee</mat-card-title>
+      
       </mat-card-header>
       <mat-card-content class="">
     <div>
@@ -10,7 +12,7 @@
           <mat-grid-tile>
             <div class="text-inside">
               <mat-form-field>
-                <input matInput placeholder="Employee Name" id="employname"  formControlName="employname" required>
+                <input matInput placeholder="Employee Name"  id="employname"  formControlName="employname" required>
                 <mat-error *ngIf="empform.controls.employname.hasError('required')">
                   Please enter Employee name
                 </mat-error>
@@ -59,7 +61,7 @@
           <mat-grid-tile>
             <div class="text-inside">
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Email address" id="email" formControlName="email" required>
+                <input matInput placeholder="Email address"  id="email" formControlName="email" required>
                 <mat-error *ngIf="empform.controls.email.hasError('required')">
                   Please enter email id
                 </mat-error>
@@ -70,7 +72,7 @@
             </div>
           </mat-grid-tile>
         
-          <mat-grid-tile>
+          <mat-grid-tile *ngIf="empheader !='View'">
             <div class="text-inside">
               <mat-form-field>
                 <input matInput placeholder="Password" id="password" type="password" formControlName="password" required>
@@ -87,7 +89,7 @@
           <mat-grid-tile>
             <div class="text-inside">
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Mobile" id="mobile" formControlName="mobile" required>
+                <input matInput placeholder="Mobile" id="mobile"  formControlName="mobile" required>
                 <mat-error *ngIf="empform.controls.mobile.hasError('required')">
                   Please enter Mobile
                 </mat-error>
@@ -101,7 +103,7 @@
             <div class="text-inside">
           <mat-form-field appearance="fill">
             <mat-label>Select Role</mat-label>
-            <mat-select disableRipple name="role" formControlName="role" id="role"
+            <mat-select disableRipple name="role"  formControlName="role" id="role"
               required (selectionChange)="changerole($event)" > 
               <mat-option *ngFor="let role of rolemaster" [value]="role.id" >{{role.text}}</mat-option>
             </mat-select>
@@ -114,7 +116,7 @@
         </mat-grid-list>
   
         <div class="btn-sec" align="center">
-          <button mat-raised-button type="button" color="primary" 
+          <button mat-raised-button type="button" color="primary" *ngIf="empheader !='View'"
           class="Update-btn" (click)="saveemployee()" [disabled]="empform.invalid"  >Save</button> &nbsp;&nbsp;
           <button mat-raised-button type="button" class="Discard-btn" (click)="closedailog()">Close</button>
         </div>

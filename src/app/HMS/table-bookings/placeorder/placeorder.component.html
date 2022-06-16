@@ -1,4 +1,7 @@
-<div class="mt20" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayout.lt-md="column" fxLayoutGap="20px">
+<app-loader *ngIf="showloader"></app-loader>
+
+<div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayout.lt-md="column" 
+fxLayoutGap="20px" class="mt20 removeflxdirect" >
 <mat-card fxFlex >
     <mat-card-header style="justify-content: center">
       <mat-card-title>
@@ -13,7 +16,7 @@
     <mat-label>Search Item</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
 </mat-form-field>
-<div>
+<div class="btndiv">
   <button mat-raised-button color="primary" [disabled]="tablestatus!='F'"  class="btnalign2" 
   (click)="Reservetable()">
    <mat-icon>event_seat</mat-icon> &nbsp; Reserve
@@ -66,7 +69,8 @@
 </mat-card-content>
 </mat-card>
 </div>
-<div class="mt20" *ngIf="orderdata.length>0" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayout.lt-md="column" fxLayoutGap="20px">
+<div  *ngIf="orderdata.length>0" fxLayout="row" fxLayoutAlign="space-between stretch" 
+  fxLayout.lt-md="column" fxLayoutGap="20px" class="mt20 removeflxdirect">
   <mat-card fxFlex >
 <mat-card-header style="justify-content: center">
     <mat-card-title>

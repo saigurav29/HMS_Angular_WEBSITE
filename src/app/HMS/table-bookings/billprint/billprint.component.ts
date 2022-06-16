@@ -12,7 +12,7 @@ import { AlertMessageComponent } from '../../alert-message/alert-message.compone
 export class BillprintComponent implements OnInit {
   orderinfo:any;
   orderlist:any
-  constructor(private tabserv:TableService, private auth:AuthServiceService,
+  constructor(private tabserv:TableService, 
     public dialogRef: MatDialogRef<BillprintComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog,) { 
       console.log(data);

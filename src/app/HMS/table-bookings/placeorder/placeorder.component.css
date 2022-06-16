@@ -28,4 +28,15 @@ table {
 .mat-table {
   overflow: auto;
   max-height: 500px;
+  
+}
+@media only screen and (max-width: 640px) {
+  .btndiv{
+    margin-top: 40px;
+  }
+  .removeflxdirect{
+    flex-direction: initial !important;
+    overflow: scroll !important;
+  }
+
 }

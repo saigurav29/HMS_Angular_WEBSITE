@@ -54,6 +54,10 @@ import { BillprintComponent } from 'src/app/HMS/table-bookings/billprint/billpri
 import { AddEditEmployeeComponent } from 'src/app/HMS/employee/add-edit-employee/add-edit-employee.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertMessageComponent } from 'src/app/HMS/alert-message/alert-message.component';
+import { AddEditFoodIemComponent } from 'src/app/HMS/food-items/add-edit-food-iem/add-edit-food-iem.component';
+import { ViewOrderedItemsComponent } from 'src/app/HMS/ordes-list/view-ordered-items/view-ordered-items.component';
+import { UserinfoComponent } from 'src/app/Layout/userinfo/userinfo.component';
+import { LoaderComponent } from 'src/app/Layout/loader/loader.component';
 const materialModules = [
   CdkTreeModule,
 //Mat Form Controls
@@ -106,6 +110,7 @@ MatListModule,
 
 @NgModule({
   declarations: [MainComponentComponent,NavmenuComponent,
+    UserinfoComponent,
     DashboardComponent,
     StatComponent,
     EmployeeComponent,
@@ -117,6 +122,9 @@ MatListModule,
     PlaceorderComponent,
     AddEditEmployeeComponent,
     AlertMessageComponent,
+    AddEditFoodIemComponent,
+    ViewOrderedItemsComponent,
+    LoaderComponent,
     BillprintComponent,],
   imports: [
     CommonModule,
@@ -126,7 +134,7 @@ MatListModule,
     ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-  exports:[...materialModules,AlertMessageComponent],
+  exports:[...materialModules,AlertMessageComponent,LoaderComponent],
   providers: [DataService]
 })
 export class MainModuleModule { }

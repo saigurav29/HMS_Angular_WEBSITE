@@ -10,4 +10,6 @@
  .mat-typography {
     font: 400 14px/32px Roboto, "Helvetica Neue", sans-serif !important;
     letter-spacing: normal;
+    padding-bottom: 10px;
 }
+

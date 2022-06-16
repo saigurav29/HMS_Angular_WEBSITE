@@ -16,6 +16,8 @@ export class DashboardComponent implements OnInit {
   totalEmp: any;
 emplist:any;
 ongoingOrders:any;
+
+showloader:any=true;
   ngOnInit(): void {
     this.getDashboarddata();
     this.getemployeeList();
@@ -24,7 +26,6 @@ ongoingOrders:any;
 
   getDashboarddata(){
     this.dashService.getdashboarddata().subscribe((retn:any)=>{
-      console.log(retn);
       this.currenMonthSales = retn.currenMonthSales;
       this.loginEmp =   retn.loginEmp;
       this.todaysOrder = retn.todaysOrder;
@@ -40,6 +41,7 @@ this.emplist=rsp;
   getongoingOrders(){
     this.dashService.getongoingOrders().subscribe((rsp:any)=>{
 this.ongoingOrders=rsp;
+this.showloader=false;
     });
   }
 

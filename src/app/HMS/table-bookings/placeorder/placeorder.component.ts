@@ -18,6 +18,8 @@ orderID:any  =0;
 tableid:any;
 empinfo:any;
 tablestatus:any;
+showloader:any=true;
+
   constructor(private tabserv:TableService, private auth:AuthServiceService,
     public dialogRef: MatDialogRef<PlaceorderComponent>,public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -52,6 +54,7 @@ fooditemDataTemp:any;
       res= res.map((v:any)=>({...v,counter:0}));
       this.fooditemDataTemp=res;
       this.dataFoodItemSource = new MatTableDataSource(res);
+      this.showloader=false;
     })
   }
   public sum(key: any) {
@@ -101,7 +104,6 @@ fooditemDataTemp:any;
 
   finalize(){
     const dialogRef = this.dialog.open(BillprintComponent, {
-      width: '40%',
       height:'600px',
       data: {orderId:this.orderID},
     });

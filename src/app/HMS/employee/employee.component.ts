@@ -3,7 +3,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
-import { DataService, UserData } from 'src/app/Services/data.service';
 import { loginService } from 'src/app/Services/ClientService/login.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditEmployeeComponent } from './add-edit-employee/add-edit-employee.component';
@@ -16,6 +15,7 @@ export class EmployeeComponent implements OnInit {
   displayedColumns = [ 'id', 'name', 'mobile', 'username','emailid','role','action'];
   dataSource: any | MatTableDataSource<any>;
   selection: any| SelectionModel<any>;
+  showloader:any=true;
 
   @ViewChild(MatPaginator, { static: true }) paginator:any| MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: any | MatSort;
@@ -34,6 +34,7 @@ export class EmployeeComponent implements OnInit {
       this.selection = new SelectionModel<any>(true, []);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.showloader=false;
     })
   }
   ngAfterViewInit() {
@@ -43,7 +44,6 @@ export class EmployeeComponent implements OnInit {
 
   openDialog(tb:any,type:any): void {
     const dialogRef = this.dialog.open(AddEditEmployeeComponent, {
-      width: '50%',
       height:'600px',disableClose: true,
       data: {data:tb,actiontype:type}
     });

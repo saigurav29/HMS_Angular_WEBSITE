@@ -1,4 +1,5 @@
     
+    <app-loader *ngIf="showloader"></app-loader>
     <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between stretch">
         <div class="mb10 mat-typography" fxFlex="24" fxFlex.lt-lg="49">
           <app-stat [bgClass]="'danger'" [icon]="'bookmarks'" [count]="currenMonthSales" [label]="'June Sale Total Margin!'" [detaillable]="'Current Month Sales'"></app-stat>
@@ -14,7 +15,8 @@
         </div>
       </div>
 <br>
-      <div class="mt20" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayout.lt-md="column" fxLayoutGap="20px">
+      <div class="mt20" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayout.lt-md="column" 
+      fxLayoutGap="20px" style="overflow: scroll !important;">
         <mat-card fxFlex >
           <mat-card-header style="justify-content: center">
             <mat-card-title>
@@ -92,5 +94,5 @@
       </div>
 
   
-
+   
 
