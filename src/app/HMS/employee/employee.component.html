@@ -1,11 +1,11 @@
-
+<app-loader *ngIf="showloader"></app-loader>
 <div>
   <span>
       <h3><b>Employee List</b></h3>
   </span>
  
 </div>
-<section id="sample-table" class="mat-elevation-z8 bg-white">
+<section id="sample-table" class="mat-elevation-z8 bg-white sectionmb">
   <mat-form-field class="leftmar" style="width: 50%;">
     <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
   </mat-form-field>

@@ -15,3 +15,10 @@
     color: white !important; 
     text-decoration: underline;
 }
+
+@media only screen and (max-width: 640px) {
+    a:hover {
+        color: #0056b3 !important; 
+        text-decoration: underline;
+    }
+    }

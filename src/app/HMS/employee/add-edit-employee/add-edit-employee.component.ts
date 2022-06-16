@@ -20,7 +20,7 @@ export class AddEditEmployeeComponent implements OnInit {
     {id:2,text:"Captain"},
     {id:3,text:"Cheaf"}]
   public breakpoint: any|number; // Breakpoint observer code
-
+diablefrm:any = false;
   constructor(public dialogRef: MatDialogRef<AddEditEmployeeComponent>,public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,private fb: FormBuilder,private empservice:loginService) {
       this.empdata = data?.data;
@@ -29,6 +29,7 @@ export class AddEditEmployeeComponent implements OnInit {
      }
 
      ngOnInit() {
+       this.diablefrm = this.empheader=="View"?true:false;
       this.empform = this.fb.group({
         employname: [null, [Validators.required, Validators.pattern('[a-zA-Z]+([a-zA-Z ]+)*')]],
         username: [null, [Validators.required, Validators.pattern('[a-zA-Z]+([a-zA-Z ]+)*')]],
@@ -37,7 +38,7 @@ export class AddEditEmployeeComponent implements OnInit {
         role:[null,Validators.required],
         mobile:[null,[Validators.required,Validators.pattern('[0-9]{10}')]]
       });
-    if(this.empheader=="Edit"){
+    if(this.empheader!="Add"){
       this.setdata();
     }
     }

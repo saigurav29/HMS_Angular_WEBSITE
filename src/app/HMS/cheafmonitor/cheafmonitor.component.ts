@@ -12,6 +12,8 @@ export class CheafmonitorComponent implements OnInit {
   dataSource:any;
   constructor(private tabserv:TableService, ) { }
 id:any;
+showloader:any=true;
+
   ngOnInit(): void {
     this.getcheafordersItems();
     this.id = setInterval(() => {
@@ -21,6 +23,7 @@ id:any;
   getcheafordersItems(){
     this.tabserv.getcheafordersItems().subscribe((res:any)=>{
       this.dataSource = new MatTableDataSource(res);
+      this.showloader=false;
     })
   }
   updateorder(item:any){

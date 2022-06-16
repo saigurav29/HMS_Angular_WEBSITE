@@ -1,0 +1,28 @@
+.loader-container {
+    display: inline-block;
+      position: absolute;
+      z-index: 9999;
+      top: 35%;
+      left: 45%;
+  }
+  
+  .imgstyl {
+    max-width: 65%;
+      position: absolute;
+      max-height: 65%;
+      top: 15px;
+      height: 65%;
+      width: 65%;
+      clip-path: circle(50% at 50% 49%);
+      left: 20px;
+  }
+
+  @media only screen and (max-width: 640px) {
+    .loader-container {
+        display: inline-block;
+          position: absolute;
+          z-index: 9999;
+          top: 35%;
+          left: 35%;
+      }
+  }

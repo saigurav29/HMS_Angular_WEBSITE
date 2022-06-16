@@ -19,6 +19,7 @@ export interface tabledata{
 export class TableBookingsComponent implements OnInit {
 tablesdata:tabledata[]=[];
   constructor(private tableserv:TableService,public dialog: MatDialog) { }
+  showloader:any=true;
 
   ngOnInit(): void {
     this.gettableData();
@@ -32,13 +33,12 @@ this.tableserv.getTabledata().subscribe((rsp:any)=>{
   }
   openDialog(tb:any): void {
     const dialogRef = this.dialog.open(PlaceorderComponent, {
-      width: '70%',
       height:'600px',
       data: tb,
     });
-
+    // width: '70%',
+    // height:'600px',
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     this.gettableData();
     });
   }
@@ -51,7 +51,7 @@ this.tableserv.getTabledata().subscribe((rsp:any)=>{
           this.tablesdata[index].tableorderDetails = tbl;
         }
       }
-      console.log(this.tablesdata);
+      this.showloader=false;
     })
   }
  
