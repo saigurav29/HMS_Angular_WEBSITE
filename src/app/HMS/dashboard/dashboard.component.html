@@ -2,7 +2,7 @@
     <app-loader *ngIf="showloader"></app-loader>
     <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-between stretch">
         <div class="mb10 mat-typography" fxFlex="24" fxFlex.lt-lg="49">
-          <app-stat [bgClass]="'danger'" [icon]="'bookmarks'" [count]="currenMonthSales" [label]="'June Sale Total Margin!'" [detaillable]="'Current Month Sales'"></app-stat>
+          <app-stat [bgClass]="'danger'" [icon]="'bookmarks'" [count]="currenMonthSales" [label]="longMonth +' Sale Total Orders!'" [detaillable]="'Current Month Orders'"></app-stat>
         </div>
         <div class="mb10 mat-typography" fxFlex="24" fxFlex.lt-lg="49">
           <app-stat [bgClass]="'warn'" [icon]="'view_list'" [count]="loginEmp" [label]="'Loged In Employeess'" [detaillable]="'Total Employees!' + totalEmp"></app-stat>
@@ -16,14 +16,14 @@
       </div>
 <br>
       <div class="mt20" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayout.lt-md="column" 
-      fxLayoutGap="20px" style="overflow: scroll !important;">
+      fxLayoutGap="20px" >
         <mat-card fxFlex >
           <mat-card-header style="justify-content: center">
             <mat-card-title>
               <h3 class="m-0 "><b>Employee List</b></h3>
             </mat-card-title>
           </mat-card-header>
-          <mat-card-content>
+          <mat-card-content class="tableoverflow">
             <table class="table table-hover">
               <thead class="text-bold">
                   <th>ID</th>
@@ -55,7 +55,7 @@
               <h3 class="m-0"><b>Onging Orders List</b></h3>
             </mat-card-title>
           </mat-card-header>
-          <mat-card-content>
+          <mat-card-content class="tableoverflow">
             <table class="table table-hover">
               <thead class="text-bold">
                   <th>Order ID</th>

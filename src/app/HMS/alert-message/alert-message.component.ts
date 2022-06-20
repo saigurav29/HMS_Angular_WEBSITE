@@ -11,13 +11,13 @@ export class AlertMessageComponent implements OnInit {
   inputdata:any;
   constructor(private fb: FormBuilder,
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<AlertMessageComponent>,
+    public dialogRefalert: MatDialogRef<AlertMessageComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any) {
       this.inputdata=data;
     } // Closing dialog window
     
      cancel() { // To cancel the dialog window
-    this.dialogRef.close();
+    this.dialogRefalert.close();
     }
     
      cancelN() { 

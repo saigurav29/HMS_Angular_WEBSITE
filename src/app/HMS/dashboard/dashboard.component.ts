@@ -16,9 +16,11 @@ export class DashboardComponent implements OnInit {
   totalEmp: any;
 emplist:any;
 ongoingOrders:any;
-
+longMonth:any;
 showloader:any=true;
   ngOnInit(): void {
+    let date = new Date(); 
+    this.longMonth = date.toLocaleString('en-us', { month: 'long' });
     this.getDashboarddata();
     this.getemployeeList();
     this.getongoingOrders();
