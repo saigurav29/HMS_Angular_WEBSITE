@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import {MatTableDataSource} from '@angular/material/table';
 import { AuthServiceService } from 'src/app/Services/auth-service.service';
 import { TableService } from 'src/app/Services/ClientService/Table.service';
+import { AlertMessageComponent } from '../../alert-message/alert-message.component';
 import { BillprintComponent } from '../billprint/billprint.component';
 
 
@@ -62,38 +63,36 @@ fooditemDataTemp:any;
   }
   placeorders(){
     var getplacedlist = this.fooditemDataTemp.filter((x:any)=>x.counter>0);
-    console.log(getplacedlist);
-    const placeorderlist:any[]=[];
-    for (let i = 0; i < getplacedlist.length; i++) {
-     let tmporddata:any={
-       orderId:this.orderID,
-       tableID:this.tableid,
-       employeID:this.empinfo?.id,
-       orderstatus:"P",
-       itemName:getplacedlist[i].itemName,
-       itemID:getplacedlist[i].itemId,
-       itemstatus:"P",
-       itemprice:getplacedlist[i].price,
-       counter:getplacedlist[i].counter
-     }
-     placeorderlist.push(tmporddata);
+    if(getplacedlist.length>0){
+      const placeorderlist:any[]=[];
+      for (let i = 0; i < getplacedlist.length; i++) {
+       let tmporddata:any={
+         orderId:this.orderID,
+         tableID:this.tableid,
+         employeID:this.empinfo?.id,
+         orderstatus:"P",
+         itemName:getplacedlist[i].itemName,
+         itemID:getplacedlist[i].itemId,
+         itemstatus:"P",
+         itemprice:getplacedlist[i].price,
+         counter:getplacedlist[i].counter
+       }
+       placeorderlist.push(tmporddata);
+      }
+      this.tabserv.placeOrders(placeorderlist).subscribe((res:any)=>{
+        this.dialogRef.close();
+      });
+    }else{
+      const dialogRef = this.dialog.open(AlertMessageComponent, {
+        width: '340px', data:{actionType:'print',employeeData:"Please select food items to place order."}
+      });
     }
-    this.tabserv.placeOrders(placeorderlist).subscribe((res:any)=>{
-      console.log(res);
-      this.dialogRef.close();
-    });
+    
   }
-  // finalize(){
-  //   var orinfo:any ={orderId:this.orderID}
-  //   this.tabserv.filnalizeOrder(orinfo).subscribe((res:any)=>{
-  //     console.log(res);
-  //     this.dialogRef.close();
-  //   });
-  // }
+
   Reservetable(){
     var tablresv:any ={       tableID:this.tableid    }
     this.tabserv.Reservetable(tablresv).subscribe((res:any)=>{
-      console.log(res);
       this.dialogRef.close();
     });
   }
@@ -108,7 +107,6 @@ fooditemDataTemp:any;
       data: {orderId:this.orderID},
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
     this.dialogRef.close();
     });
   }

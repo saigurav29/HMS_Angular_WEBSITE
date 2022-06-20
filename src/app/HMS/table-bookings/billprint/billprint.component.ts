@@ -40,19 +40,6 @@ toalamout:number=0;
     finalize(){
     var orinfo:any ={orderId:this.orderinfo?.orderId}
     this.tabserv.filnalizeOrder(orinfo).subscribe((res:any)=>{
-      // let printContents:any = document.getElementById("printbill");
-    
-      // var mywindow:any = window.open('', 'PRINT', 'height=400,width=600');
-
-      // mywindow.document.write(printContents.innerHTML);
-  
-      // mywindow.document.close(); // necessary for IE >= 10
-      // mywindow.focus(); // necessary for IE >= 10*/
-  
-      // mywindow.print();
-     
- 
-      //window.print();
       this.dialogRef.close();
       const dialogRef = this.dialog.open(AlertMessageComponent, {
         width: '340px', data:{actionType:'print',employeeData:"Order Completed Successfully."}
